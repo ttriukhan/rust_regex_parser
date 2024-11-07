@@ -2,5 +2,9 @@
 name = "regex_parser"
 version = "0.1.0"
 edition = "2021"
+description = "This project provides a parser for standard regular expressions based on a defined grammar."
 
 [dependencies]
+anyhow = "1.0.91"
+pest = "2.7.14"
+pest_derive = "2.7.14"

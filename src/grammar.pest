@@ -1,0 +1,13 @@
+rsymb = { !("(" | ")" | "|" | "*" | "+" | "?") ~ ANY }
+prime = { rsymb | ("(" ~ rexpr ~ ")") }
+rfact = { prime ~ ("*" | "+" | "?")? }
+rterm = { rfact ~ rfact* }
+rexpr = { rterm ~ ("|" ~ rterm)* }
+reg = { SOI ~ rexpr ~ EOI }
+
+//    < reg>    :: =  <rexpr>  ‘eos’ 
+//    < rexpr> :: = <rterm> { '|'  <rterm>}
+//    < rterm> :: =  <rfact>  {<rfact>}
+//    < rfact>  :: =  <prime> ['*' | '+' | '?']
+//    < prime> ::=  <rsymb> | '(' <rexpr> ')'
+//    < rsymb> :: =<довільний символ крім  ‘(‘, ‘)’, ‘|’, ‘*’, ‘+’, ‘?’>  
