@@ -1,13 +1,24 @@
-rsymb = { !("(" | ")" | "|" | "*" | "+" | "?") ~ ANY }
-prime = { rsymb | ("(" ~ rexpr ~ ")") }
-rfact = { prime ~ ("*" | "+" | "?")? }
-rterm = { rfact ~ rfact* }
-rexpr = { rterm ~ ("|" ~ rterm)* }
-reg = { SOI ~ rexpr ~ EOI }
-
-//    < reg>    :: =  <rexpr>  ‘eos’ 
-//    < rexpr> :: = <rterm> { '|'  <rterm>}
-//    < rterm> :: =  <rfact>  {<rfact>}
-//    < rfact>  :: =  <prime> ['*' | '+' | '?']
-//    < prime> ::=  <rsymb> | '(' <rexpr> ')'
+/// This rule matches any symbol except the special characters '(', ')', '|', '*', '+', or '?'.
 //    < rsymb> :: =<довільний символ крім  ‘(‘, ‘)’, ‘|’, ‘*’, ‘+’, ‘?’>  
+rsymb = { !("(" | ")" | "|" | "*" | "+" | "?") ~ ANY }
+
+/// This rule matches a single symbol (`rsymb`) or an expression enclosed in parentheses (`(rexpr)`).
+//    < prime> ::=  <rsymb> | '(' <rexpr> ')'
+prime = { rsymb | ("(" ~ rexpr ~ ")") }
+
+/// This rule matches a `prime` expression followed by an optional quantifier: '*', '+', or '?'.
+//    < rfact>  :: =  <prime> ['*' | '+' | '?']
+rfact = { prime ~ ("*" | "+" | "?")? }
+
+/// This rule matches one or more `rfact` expressions.
+//    < rterm> :: =  <rfact>  {<rfact>}
+rterm = { rfact ~ rfact* }
+
+/// This rule matches a sequence of `rterm` expressions separated by the `|` operator (alternation).
+//    < rexpr> :: = <rterm> { '|'  <rterm>}
+rexpr = { rterm ~ ("|" ~ rterm)* }
+
+/// This rule is the entry point of the grammar. It expects the pattern to start with `SOI` (Start of Input),
+/// match a `rexpr` (a regular expression), and end with `EOI` (End of Input).
+//    < reg>    :: =  <rexpr>  ‘eos’ 
+reg = { SOI ~ rexpr ~ EOI }

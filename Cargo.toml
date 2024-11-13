@@ -1,10 +1,14 @@
 [package]
 name = "regex_parser"
 version = "0.1.0"
+authors = ["Tetiana Triukhan t.triukhan@ukma.edu.ua"]
+repository = "https://github.com/ttriukhan/rust_regex_parser"
 edition = "2021"
 description = "This project provides a parser for standard regular expressions based on a defined grammar."
 
 [dependencies]
 anyhow = "1.0.91"
+thiserror = "1.0"
 pest = "2.7.14"
 pest_derive = "2.7.14"
+structopt = "0.3"
