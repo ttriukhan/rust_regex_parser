@@ -2,6 +2,7 @@
 name = "regex_parser"
 version = "0.1.0"
 authors = ["Tetiana Triukhan t.triukhan@ukma.edu.ua"]
+license = "MIT"
 repository = "https://github.com/ttriukhan/rust_regex_parser"
 edition = "2021"
 description = "This project provides a parser for standard regular expressions based on a defined grammar."
