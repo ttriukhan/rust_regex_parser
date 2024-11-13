@@ -1,5 +1,5 @@
 # regex_parser
-
+Link: https://crates.io/crates/regex_parser Docs: https://docs.rs/regex_parser/0.1.0/regex_parser/
 This project provides a parser for standard regular expressions (regex) based on a custom grammar. The parser is capable of recognizing regex patterns that use the following components:
 
 - | (alternation): allows for multiple pattern options
