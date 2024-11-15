@@ -1,3 +1,5 @@
+//! Simple grammar rules for parsing standard regular expressions.
+
 /// This rule matches any symbol except the special characters '(', ')', '|', '*', '+', or '?'.
 //    < rsymb> :: =<довільний символ крім  ‘(‘, ‘)’, ‘|’, ‘*’, ‘+’, ‘?’>  
 rsymb = { !("(" | ")" | "|" | "*" | "+" | "?") ~ ANY }

@@ -19,7 +19,6 @@ fn main() -> anyhow::Result<()> {
 fn parse_file(file_name: &str) -> anyhow::Result<()> {
     let input = fs::read_to_string(file_name)?;
     let parsed = RegexGrammar::parse(Rule::reg, &input).map_err(RegexParsingError::from)?;
-    //print_grammar(parsed, 0);
     print_result(parsed);
     Ok(())
 }
@@ -42,17 +41,3 @@ fn print_result(pairs: Pairs<Rule>) {
         println!("{}", first_pair.as_str());
     }
 }
-
-// fn print_grammar(pairs: Pairs<Rule>, indent_level: usize) {
-//     for pair in pairs {
-//         println!(
-//             "{}- Rule: {:?}, Text: `{}`",
-//             "  ".repeat(indent_level),
-//             pair.as_rule(),
-//             pair.as_str()
-//         );
-//         if pair.clone().into_inner().peek().is_some() {
-//             print_grammar(pair.into_inner(), indent_level + 1);
-//         }
-//     }
-// }
